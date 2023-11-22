@@ -1,4 +1,4 @@
 [submodule "pymilvus/grpc_gen/milvus-proto"]
 	path = pymilvus/grpc_gen/milvus-proto
 	url = https://github.com/etherlai/milvus-proto.git
-    branch = rg-enhance-2.2.14
+	branch = rg-enhance-2.2.14
