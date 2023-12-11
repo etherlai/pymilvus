@@ -1496,12 +1496,21 @@ class CheckHealthResponse(_message.Message):
     def __init__(self, status: _Optional[_Union[_common_pb2.Status, _Mapping]] = ..., isHealthy: bool = ..., reasons: _Optional[_Iterable[str]] = ..., quota_states: _Optional[_Iterable[_Union[QuotaState, str]]] = ...) -> None: ...
 
 class CreateResourceGroupRequest(_message.Message):
-    __slots__ = ["base", "resource_group"]
+    __slots__ = ["base", "resource_group", "node_selector"]
+    class NodeSelectorEntry(_message.Message):
+        __slots__ = ["key", "value"]
+        KEY_FIELD_NUMBER: _ClassVar[int]
+        VALUE_FIELD_NUMBER: _ClassVar[int]
+        key: str
+        value: str
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[str] = ...) -> None: ...
     BASE_FIELD_NUMBER: _ClassVar[int]
     RESOURCE_GROUP_FIELD_NUMBER: _ClassVar[int]
+    NODE_SELECTOR_FIELD_NUMBER: _ClassVar[int]
     base: _common_pb2.MsgBase
     resource_group: str
-    def __init__(self, base: _Optional[_Union[_common_pb2.MsgBase, _Mapping]] = ..., resource_group: _Optional[str] = ...) -> None: ...
+    node_selector: _containers.ScalarMap[str, str]
+    def __init__(self, base: _Optional[_Union[_common_pb2.MsgBase, _Mapping]] = ..., resource_group: _Optional[str] = ..., node_selector: _Optional[_Mapping[str, str]] = ...) -> None: ...
 
 class DropResourceGroupRequest(_message.Message):
     __slots__ = ["base", "resource_group"]
@@ -1570,7 +1579,7 @@ class DescribeResourceGroupResponse(_message.Message):
     def __init__(self, status: _Optional[_Union[_common_pb2.Status, _Mapping]] = ..., resource_group: _Optional[_Union[ResourceGroup, _Mapping]] = ...) -> None: ...
 
 class ResourceGroup(_message.Message):
-    __slots__ = ["name", "capacity", "num_available_node", "num_loaded_replica", "num_outgoing_node", "num_incoming_node"]
+    __slots__ = ["name", "capacity", "num_available_node", "num_loaded_replica", "num_outgoing_node", "num_incoming_node", "node_selector"]
     class NumLoadedReplicaEntry(_message.Message):
         __slots__ = ["key", "value"]
         KEY_FIELD_NUMBER: _ClassVar[int]
@@ -1592,19 +1601,28 @@ class ResourceGroup(_message.Message):
         key: str
         value: int
         def __init__(self, key: _Optional[str] = ..., value: _Optional[int] = ...) -> None: ...
+    class NodeSelectorEntry(_message.Message):
+        __slots__ = ["key", "value"]
+        KEY_FIELD_NUMBER: _ClassVar[int]
+        VALUE_FIELD_NUMBER: _ClassVar[int]
+        key: str
+        value: str
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[str] = ...) -> None: ...
     NAME_FIELD_NUMBER: _ClassVar[int]
     CAPACITY_FIELD_NUMBER: _ClassVar[int]
     NUM_AVAILABLE_NODE_FIELD_NUMBER: _ClassVar[int]
     NUM_LOADED_REPLICA_FIELD_NUMBER: _ClassVar[int]
     NUM_OUTGOING_NODE_FIELD_NUMBER: _ClassVar[int]
     NUM_INCOMING_NODE_FIELD_NUMBER: _ClassVar[int]
+    NODE_SELECTOR_FIELD_NUMBER: _ClassVar[int]
     name: str
     capacity: int
     num_available_node: int
     num_loaded_replica: _containers.ScalarMap[str, int]
     num_outgoing_node: _containers.ScalarMap[str, int]
     num_incoming_node: _containers.ScalarMap[str, int]
-    def __init__(self, name: _Optional[str] = ..., capacity: _Optional[int] = ..., num_available_node: _Optional[int] = ..., num_loaded_replica: _Optional[_Mapping[str, int]] = ..., num_outgoing_node: _Optional[_Mapping[str, int]] = ..., num_incoming_node: _Optional[_Mapping[str, int]] = ...) -> None: ...
+    node_selector: _containers.ScalarMap[str, str]
+    def __init__(self, name: _Optional[str] = ..., capacity: _Optional[int] = ..., num_available_node: _Optional[int] = ..., num_loaded_replica: _Optional[_Mapping[str, int]] = ..., num_outgoing_node: _Optional[_Mapping[str, int]] = ..., num_incoming_node: _Optional[_Mapping[str, int]] = ..., node_selector: _Optional[_Mapping[str, str]] = ...) -> None: ...
 
 class RenameCollectionRequest(_message.Message):
     __slots__ = ["base", "db_name", "oldName", "newName", "newDBName"]

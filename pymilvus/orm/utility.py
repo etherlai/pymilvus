@@ -11,7 +11,7 @@
 # the License.
 
 from datetime import datetime, timedelta, timezone
-from typing import List, Optional
+from typing import List, Optional, Dict
 
 from pymilvus.client.types import BulkInsertState
 from pymilvus.client.utils import hybridts_to_unixtime as _hybridts_to_unixtime
@@ -1073,18 +1073,18 @@ def get_server_version(using: str = "default", timeout: Optional[float] = None) 
     return _get_connection(using).get_server_version(timeout=timeout)
 
 
-def create_resource_group(name: str, using: str = "default", timeout: Optional[float] = None):
+def create_resource_group(name: str, using: str = "default", timeout: Optional[float] = None, node_selector: Optional[Dict[str, str]] = None):
     """Create a resource group
         It will success whether or not the resource group exists.
 
     :example:
         >>> from pymilvus import connections, utility
         >>> connections.connect()
-        >>> utility.create_resource_group(name)
+        >>> utility.create_resource_group(name=name, node_selectors=node_selector)
         >>> rgs = utility.list_resource_groups()
         >>> print(f"resource groups in Milvus: {rgs}")
     """
-    return _get_connection(using).create_resource_group(name, timeout)
+    return _get_connection(using).create_resource_group(name, timeout, node_selector)
 
 
 def drop_resource_group(name: str, using: str = "default", timeout: Optional[float] = None):

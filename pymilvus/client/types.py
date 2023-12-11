@@ -750,6 +750,7 @@ class ResourceGroupInfo:
         self._num_loaded_replica = resource_group.num_loaded_replica
         self._num_outgoing_node = resource_group.num_outgoing_node
         self._num_incoming_node = resource_group.num_incoming_node
+        self._node_selector = resource_group.node_selector
 
     def __repr__(self) -> str:
         return f"""ResourceGroupInfo:

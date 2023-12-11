@@ -1609,8 +1609,8 @@ class GrpcHandler:
         return resp.version
 
     @retry_on_rpc_failure()
-    def create_resource_group(self, name: str, timeout: Optional[float] = None, **kwargs):
-        req = Prepare.create_resource_group(name)
+    def create_resource_group(self, name: str, timeout: Optional[float] = None, node_selector: Optional[Dict[str, str]] = None, **kwargs):
+        req = Prepare.create_resource_group(name, node_selector)
         resp = self._stub.CreateResourceGroup(req, wait_for_ready=True, timeout=timeout)
         if resp.error_code != 0:
             raise MilvusException(resp.error_code, resp.reason)

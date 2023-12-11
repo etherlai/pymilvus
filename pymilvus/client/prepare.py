@@ -1051,9 +1051,9 @@ class Prepare:
         return milvus_types.GetVersionRequest()
 
     @classmethod
-    def create_resource_group(cls, name: str):
+    def create_resource_group(cls, name: str, node_selector: Optional[Dict[str, str]]):
         check_pass_param(resource_group_name=name)
-        return milvus_types.CreateResourceGroupRequest(resource_group=name)
+        return milvus_types.CreateResourceGroupRequest(resource_group=name, node_selectors=node_selector)
 
     @classmethod
     def drop_resource_group(cls, name: str):

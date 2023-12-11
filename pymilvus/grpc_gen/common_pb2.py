@@ -20,8 +20,6 @@ _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'common_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
-  google_dot_protobuf_dot_descriptor__pb2.MessageOptions.RegisterExtension(privilege_ext_obj)
-
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\016io.milvus.grpcB\013CommonProtoP\001Z4github.com/milvus-io/milvus-proto/go-api/v2/commonpb\240\001\001\252\002\016IO.Milvus.Grpc'
   _CLIENTINFO_RESERVEDENTRY._options = None
